@@ -1,2 +1,2 @@
-# Dwaal-preventie
-building a app to prevent wondering peopel from getting missing by there care takers 
+# Security-scanner-go
+Building my first ecurity scanner in Golang to learn more about the language and how to implement security 
