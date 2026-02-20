@@ -1,4 +1,4 @@
-package main // Verander naar 'systems' als dit een library is
+package systems 
 
 import (
 	"context"
@@ -15,6 +15,13 @@ type PortScanner struct {
 	lock *semaphore.Weighted
 }
 
+func NewPortScanner(ip string, maxConcurrency int64) *PortScanner {
+	return &PortScanner{
+		ip:   ip,
+		lock: semaphore.NewWeighted(maxConcurrency),
+	}
+}
+
 func ScanPort(ip string, port int, timeout time.Duration) {
 	target := net.JoinHostPort(ip, strconv.Itoa(port))
 	
@@ -28,7 +35,7 @@ func ScanPort(ip string, port int, timeout time.Duration) {
 	}
 	
 	conn.Close()
-	fmt.Printf("[+] %d open\n", port)
+	fmt.Printf("[+] Poort %d is OPEN op %s\n", port, ip)
 }
 
 func (ps *PortScanner) Start(f, l int, timeout time.Duration) {
@@ -47,16 +54,4 @@ func (ps *PortScanner) Start(f, l int, timeout time.Duration) {
 		}(port)
 	}
 	wg.Wait() // Wacht tot alle poorten in de range klaar zijn
-}
-
-func main() {
-	// 1000 is een veilige, snelle default voor de meeste systemen
-	ps := &PortScanner{
-		ip:   "127.0.0.1",
-		lock: semaphore.NewWeighted(1000), 
-	}
-
-	fmt.Printf("Scanning %s...\n", ps.ip)
-	ps.Start(1, 1024, 200*time.Millisecond)
-	fmt.Println("Scan voltooid.")
 }
