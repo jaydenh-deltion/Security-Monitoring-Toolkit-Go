@@ -3,6 +3,7 @@ package main
 import (
     "sync"
     "port_scanner/systems"
+    "home/templates"
 )
 
 func main() {
@@ -13,3 +14,4 @@ func main() {
         startPort: 1,
         endPort: 100,
     }
+}
