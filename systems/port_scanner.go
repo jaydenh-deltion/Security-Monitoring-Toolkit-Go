@@ -9,7 +9,6 @@ import (
 	"strings"
 	"sync"
 	"time"
-
 	"golang.org/x/sync/semaphore"
 )
 
@@ -31,4 +30,20 @@ func Ulimit() int64 {
 	return i
 }
 
-func Scanport(ip string, port int, timeout time.Duration) bool {
+func ScanPort(ip string, port int, timeout time.Duration) {
+    target := fmt.Sprintf("%s:%d", ip, port)
+    conn, err := net.DialTimeout("tcp", target, timeout)
+    
+    if err != nil {
+        if strings.Contains(err.Error(), "too many open files") {
+            time.Sleep(timeout)
+            ScanPort(ip, port, timeout)
+        } else {
+            fmt.Println(port, "closed")
+        }
+        return
+    }
+    
+    conn.Close()
+    fmt.Println(port, "open")
+}
