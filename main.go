@@ -1,17 +1,12 @@
 package main
 
 import (
-    "sync"
-    "port_scanner/systems"
-    "home/templates"
+    "time"
+    "security-scanner-go/systems"
 )
 
 func main() {
-    var wg sync.WaitGroup
-    scanner := systems.PortScanner{
-        ip: 
-        "127.0.0.1",
-        startPort: 1,
-        endPort: 100,
-    }
+    scanner := systems.NewPortScanner("127.0.0.1", 100)
+
+    scanner.Start(1, 1000, time.Second)
 }

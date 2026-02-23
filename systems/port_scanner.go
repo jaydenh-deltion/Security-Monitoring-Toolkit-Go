@@ -25,12 +25,12 @@ func NewPortScanner(ip string, maxConcurrency int64) *PortScanner {
 func ScanPort(ip string, port int, timeout time.Duration) {
 	target := net.JoinHostPort(ip, strconv.Itoa(port))
 	
-	// We gebruiken een Dialer voor meer controle
+	
 	dialer := net.Dialer{Timeout: timeout}
 	conn, err := dialer.Dial("tcp", target)
 	
 	if err != nil {
-		// Voor een snelle scanner printen we vaak alleen de open poorten
+		
 		return 
 	}
 	
@@ -42,8 +42,8 @@ func (ps *PortScanner) Start(f, l int, timeout time.Duration) {
 	var wg sync.WaitGroup
 
 	for port := f; port <= l; port++ {
-		// Acquire wacht netjes tot er ruimte is, 
-		// dus we hoeven niet bang te zijn voor 'too many open files'
+
+		
 		ps.lock.Acquire(context.TODO(), 1)
 		wg.Add(1)
 
@@ -53,5 +53,5 @@ func (ps *PortScanner) Start(f, l int, timeout time.Duration) {
 			ScanPort(ps.ip, p, timeout)
 		}(port)
 	}
-	wg.Wait() // Wacht tot alle poorten in de range klaar zijn
+	wg.Wait() // wait for all ports to be scanned
 }

@@ -11,7 +11,7 @@ type PasswordGenerator struct {
 }
 
 func (pg *PasswordGenerator) Generate() string {
-	charset := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()"
+	charset := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?"
 	password := make([]byte, pg.length)
 	
 	for i := range password {
