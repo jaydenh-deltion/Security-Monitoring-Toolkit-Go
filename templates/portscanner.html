@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Port Scanner</title>
+</head>
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/password-gen">Password Generator</a> |
+        <a href="/password-check">Password Strength Checker</a> |
+        <a href="/portscanner">Port Scanner</a>
+        <a href="/email-checker">Email Checker</a>
+        <a href="/malware-scanner">Malware Scanner</a>
+        <a href="/vulnerability-scanner">Vulnerability Scanner</a>
+        <a href="/log-analyzer">Log Analyzer</a>
+        <a href="/network-monitor">Network Monitor</a>
+         <a href="/file-integrity">File Integrity Checker</a>
+         <a href="/threat-intel">Threat Intelligence Feeds</a>
+          <a href="/incident-response">Incident Response Playbooks</a>
+           <a href="/security-audit">Security Audit Checklist</a>
+    </nav>
+
+
+<body>
+    <div class="container">
+        <h1>Port Scanner</h1>
+        <form action="/scan" method="post">
+            <label for="host">Host:</label>
+            <input type="text" id="host" name="host" required>
+            <br>
+            <label for="ports">Ports (comma separated):</label>
+            <input type="text" id="ports" name="ports" required>
+            <br>
+            <button type="submit">Scan</button>
+        </form>
+        {{if .Results}}
+        <h2>Scan Results:</h2>
+
+
+</body>
+</html>
