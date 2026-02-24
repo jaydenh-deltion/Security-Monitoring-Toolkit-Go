@@ -56,7 +56,7 @@ func main() {
 	}
 	fmt.Println("Generated password:", password)
 
-	// Example of generating a random number using crypto/rand
+	
 	nBig, err := rand.Int(rand.Reader, big.NewInt(100))
 	if err != nil {
 		fmt.Println("Error generating random number:", err)
