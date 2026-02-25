@@ -31,7 +31,7 @@ func NewPasswordGenerator(length int) *PasswordGenerator {
 	return &PasswordGenerator{length: length}
 }
 
-func main() {
+func RunGenerator() {
 
 	var length int 
 	fmt.Print("Enter desired password length: ")
