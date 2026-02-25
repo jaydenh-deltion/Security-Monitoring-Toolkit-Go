@@ -18,6 +18,8 @@ type PortScanner struct {
 func RunPortScanner() {
 	fmt.Println("Starting Port Scanner...")
 	fmt.Println("Enter the target IP address:")
+	var ip string 
+	fmt.Scanln(&ip)
 	
 }
 
