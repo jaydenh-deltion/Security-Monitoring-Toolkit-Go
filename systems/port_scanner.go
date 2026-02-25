@@ -15,6 +15,12 @@ type PortScanner struct {
 	lock *semaphore.Weighted
 }
 
+func RunPortScanner() {
+	fmt.Println("Starting Port Scanner...")
+	fmt.Println("Enter the target IP address:")
+	
+}
+
 func NewPortScanner(ip string, maxConcurrency int64) *PortScanner {
 	return &PortScanner{
 		ip:   ip,
