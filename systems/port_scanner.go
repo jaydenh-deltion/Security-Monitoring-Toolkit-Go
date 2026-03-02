@@ -20,6 +20,20 @@ func RunPortScanner() {
 	fmt.Println("Enter the target IP address:")
 	var ip string 
 	fmt.Scanln(&ip)
+
+	var startPort int
+	startPort = 20
+
+	var endPort int
+	endPort = 1024
+
+	fmt.Println("Enter the timeout for each port scan (in seconds):")
+	var timeoutSec int
+	fmt.Scanln(&timeoutSec)
+	timeout := time.Duration(timeoutSec) * time.Second
+
+	scanner := NewPortScanner(ip, 100) 
+	scanner.Start(startPort, endPort, timeout)
 	
 }
 
@@ -61,5 +75,5 @@ func (ps *PortScanner) Start(f, l int, timeout time.Duration) {
 			ScanPort(ps.ip, p, timeout)
 		}(port)
 	}
-	wg.Wait() // wait for all ports to be scanned
+	wg.Wait()
 }
