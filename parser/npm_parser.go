@@ -11,3 +11,4 @@ type PackageJSON struct {
 	Version      string            `json:"version"`
 	Dependencies map[string]string `json:"dependencies"`
 }
+
